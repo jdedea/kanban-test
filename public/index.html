@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js"
+      defer
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="ml-3 text-2xl font-bold mt-2 fixed">Board Title</h1>
+    <section class="flex">
+      <div class="flex flex-shrink-0 mt-11">
+        <!-- Start List -->
+        <div class="w-72 m-1 list--head" x-data="{editingTitle: false, addingCard: false}">
+          <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
+            <div class="flex justify-between" x-show="!editingTitle">
+              <p class="p-1 font-bold">This is the title</p>
+              <button class="p-1" @click="editingTitle = true">&#9998;</button>
+            </div>
+            <input
+              type="text"
+              class="font-bold p-1 rounded shadow"
+              x-show="editingTitle"
+              @keydown.enter="editingTitle = false"
+              @click.away="editingTitle = false"
+            />
+            <div class="lists px-1 pt-1 pb-2 w-full">
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
+                  eum esse distinctio ea voluptatem consectetur et illum?
+                </p>
+                <ul>
+                  <li class="list-disc ml-5">Test</li>
+                  <li class="list-disc ml-5">List item 2</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add"
+              @click="addingCard = true"
+              x-show="!addingCard"
+            >
+              + Add another card
+            </button>
+            <input
+              type="text"
+              class="font-bold p-1 rounded shadow"
+              x-show="addingCard"
+              @click.away="addingCard = false"
+              @keydown.enter="addingCard = false"
+            />
+          </div>
+        </div>
+        <!-- End List -->
+
+        <!-- Start List -->
+        <div class="w-72 m-1 list--head" x-data="{editingTitle: false, addingCard: false}">
+          <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
+            <div class="flex justify-between" x-show="!editingTitle">
+              <p class="p-1 font-bold">This is the title</p>
+              <button class="p-1" @click="editingTitle = true">&#9998;</button>
+            </div>
+            <input
+              type="text"
+              class="font-bold p-1 rounded shadow"
+              x-show="editingTitle"
+              @keydown.enter="editingTitle = false"
+              @click.away="editingTitle = false"
+            />
+            <div class="lists px-1 pt-1 pb-2 w-full">
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
+                  eum esse distinctio ea voluptatem consectetur et illum?
+                </p>
+                <ul>
+                  <li class="list-disc ml-5">Test</li>
+                  <li class="list-disc ml-5">List item 2</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add"
+              @click="addingCard = true"
+              x-show="!addingCard"
+            >
+              + Add another card
+            </button>
+            <input
+              type="text"
+              class="font-bold p-1 rounded shadow"
+              x-show="addingCard"
+              @click.away="addingCard = false"
+              @keydown.enter="addingCard = false"
+            />
+          </div>
+        </div>
+        <!-- End List -->
+
+        <!-- Start List -->
+        <div class="w-72 m-1 list--head" x-data="{editingTitle: false, addingCard: false}">
+          <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
+            <div class="flex justify-between" x-show="!editingTitle">
+              <p class="p-1 font-bold">This is the title</p>
+              <button class="p-1" @click="editingTitle = true">&#9998;</button>
+            </div>
+            <input
+              type="text"
+              class="font-bold p-1 rounded shadow"
+              x-show="editingTitle"
+              @keydown.enter="editingTitle = false"
+              @click.away="editingTitle = false"
+            />
+            <div class="lists px-1 pt-1 pb-2 w-full">
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
+                  eum esse distinctio ea voluptatem consectetur et illum?
+                </p>
+                <ul>
+                  <li class="list-disc ml-5">Test</li>
+                  <li class="list-disc ml-5">List item 2</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add"
+              @click="addingCard = true"
+              x-show="!addingCard"
+            >
+              + Add another card
+            </button>
+            <input
+              type="text"
+              class="font-bold p-1 rounded shadow"
+              x-show="addingCard"
+              @click.away="addingCard = false"
+              @keydown.enter="addingCard = false"
+            />
+          </div>
+        </div>
+        <!-- End List -->
+      </div>
+    </section>
+  </body>
+  <script>
+    const boardItem = document.querySelectorAll('.board-item')
+    const lists = document.querySelectorAll('.lists')
+    const listHead = document.querySelectorAll('.list--head')
+
+    // make items draggable
+    boardItem.forEach((item) => {
+      item.addEventListener('dragstart', () => {
+        item.classList.add('dragging')
+      })
+
+      item.addEventListener('dragend', () => {
+        item.classList.remove('dragging')
+      })
+    })
+
+    // items can be placed in list
+    lists.forEach((list) => {
+      list.addEventListener('dragover', (e) => {
+        e.preventDefault()
+        const item = document.querySelector('.dragging')
+        list.appendChild(item)
+      })
+    })
+
+    boardItem.forEach((item) => {
+      item.addEventListener('mouseenter', function () {
+        const trash = this.querySelector('.trash')
+        trash.classList.remove('hidden')
+        trash.addEventListener('click', function () {
+          this.parentNode.remove()
+        })
+      })
+      item.addEventListener('mouseleave', function () {
+        const trash = this.querySelector('.trash')
+        trash.classList.add('hidden')
+      })
+    })
+  </script>
+</html>
