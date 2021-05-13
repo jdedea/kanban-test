@@ -220,11 +220,33 @@
     lists.forEach((list) => {
       list.addEventListener('dragover', (e) => {
         e.preventDefault()
+        const afterElement = getDragAfterElement(list, e.clientY)
         const item = document.querySelector('.dragging')
-        list.appendChild(item)
+        if (afterElement == null) {
+          list.appendChild(item)
+        } else {
+          list.insertBefore(item, afterElement)
+        }
       })
     })
 
+    function getDragAfterElement(list, y) {
+      const draggableElements = [...list.querySelectorAll('.board-item:not(.dragging)')]
+      return draggableElements.reduce(
+        (closest, child) => {
+          const box = child.getBoundingClientRect()
+          const offset = y - box.top - box.height / 2
+          if (offset < 0 && offset > closest.offset) {
+            return {offset: offset, element: child}
+          } else {
+            return closest
+          }
+        },
+        {offset: Number.NEGATIVE_INFINITY}
+      ).element
+    }
+
+    // Delete an element
     boardItem.forEach((item) => {
       item.addEventListener('mouseenter', function () {
         const trash = this.querySelector('.trash')
