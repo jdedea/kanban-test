@@ -65,6 +65,7 @@ titleTags.forEach((title) => {
   const titleP = title.querySelector('p')
   const inputTag = title.querySelector('input')
   const edit = title.querySelector('button')
+  inputTag.value = titleP.innerText
 
   edit.addEventListener('click', function () {
     titleName.classList.add('hidden')
@@ -76,6 +77,10 @@ titleTags.forEach((title) => {
       titleName.classList.remove('hidden')
       inputTag.classList.add('hidden')
       titleP.innerHTML = inputTag.value
+    } else if (event.key === 'Escape') {
+      titleName.classList.remove('hidden')
+      inputTag.classList.add('hidden')
+      inputTag.value = titleP.innerText
     }
   })
 })
@@ -101,6 +106,10 @@ listHead.forEach((list) => {
         newCard.classList.remove('hidden')
         cardPTag.innerHTML = addInput.value
         lists.appendChild(newCard)
+        addInput.value = ''
+        addCard.classList.remove('hidden')
+        addInput.classList.add('hidden')
+      } else if (event.key === 'Escape') {
         addInput.value = ''
         addCard.classList.remove('hidden')
         addInput.classList.add('hidden')
