@@ -3,28 +3,25 @@ const lists = document.querySelectorAll('.lists')
 const listHead = document.querySelectorAll('.list--head')
 
 // make items draggable
-boardItem.forEach((item) => {
-  item.addEventListener('dragstart', () => {
-    item.classList.add('dragging')
-  })
+$(document).on('dragstart', '.board-item', function (item) {
+  $(this).addClass('dragging')
+})
 
-  item.addEventListener('dragend', () => {
-    item.classList.remove('dragging')
-  })
+$(document).on('dragend', '.board-item', function (item) {
+  $(this).removeClass('dragging')
 })
 
 // items can be placed in list
-lists.forEach((list) => {
-  list.addEventListener('dragover', (e) => {
-    e.preventDefault()
-    const afterElement = getDragAfterElement(list, e.clientY)
-    const item = document.querySelector('.dragging')
-    if (afterElement == null) {
-      list.appendChild(item)
-    } else {
-      list.insertBefore(item, afterElement)
-    }
-  })
+$(document).on('dragover', '.lists', function (e) {
+  e.preventDefault()
+  const afterElement = getDragAfterElement(this, e.clientY)
+  const item = document.querySelector('.dragging')
+  console.log(item)
+  if (afterElement == null) {
+    this.appendChild(item)
+  } else {
+    this.insertBefore(item, afterElement)
+  }
 })
 
 function getDragAfterElement(list, y) {
@@ -44,18 +41,19 @@ function getDragAfterElement(list, y) {
 }
 
 // Delete an element
-boardItem.forEach((item) => {
-  item.addEventListener('mouseenter', function () {
-    const trash = this.querySelector('.trash')
-    trash.classList.remove('hidden')
-    trash.addEventListener('click', function () {
-      this.parentNode.remove()
-    })
-  })
-  item.addEventListener('mouseleave', function () {
-    const trash = this.querySelector('.trash')
-    trash.classList.add('hidden')
-  })
+$(document).on('mouseenter', '.board-item', function (item) {
+  const trash = $(this).find('.trash')
+  console.log(trash)
+  $(trash).removeClass('hidden')
+})
+
+$(document).on('click', '.trash', function (trash) {
+  this.parentNode.remove()
+})
+
+$(document).on('mouseleave', '.board-item', function (item) {
+  const trash = $(this).find('.trash')
+  $(trash).addClass('hidden')
 })
 
 // Editing Title
@@ -106,6 +104,7 @@ listHead.forEach((list) => {
         newCard.classList.remove('hidden')
         cardPTag.innerHTML = addInput.value
         lists.appendChild(newCard)
+
         addInput.value = ''
         addCard.classList.remove('hidden')
         addInput.classList.add('hidden')
