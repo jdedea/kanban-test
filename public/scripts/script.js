@@ -1,6 +1,9 @@
 const boardItem = document.querySelectorAll('.board-item')
 const lists = document.querySelectorAll('.lists')
 const listHead = document.querySelectorAll('.list--head')
+const titleTags = document.querySelectorAll('.title')
+const newBoardBtn = document.querySelector('.new-board')
+const board = document.querySelector('.board')
 
 // make items draggable
 $(document).on('dragstart', '.board-item', function (item) {
@@ -16,7 +19,6 @@ $(document).on('dragover', '.lists', function (e) {
   e.preventDefault()
   const afterElement = getDragAfterElement(this, e.clientY)
   const item = document.querySelector('.dragging')
-  console.log(item)
   if (afterElement == null) {
     this.appendChild(item)
   } else {
@@ -43,7 +45,6 @@ function getDragAfterElement(list, y) {
 // Delete an element
 $(document).on('mouseenter', '.board-item', function (item) {
   const trash = $(this).find('.trash')
-  console.log(trash)
   $(trash).removeClass('hidden')
 })
 
@@ -57,7 +58,7 @@ $(document).on('mouseleave', '.board-item', function (item) {
 })
 
 // Editing Title
-const titleTags = document.querySelectorAll('.title')
+
 titleTags.forEach((title) => {
   const titleName = title.querySelector('div')
   const titleP = title.querySelector('p')
@@ -89,14 +90,15 @@ listHead.forEach((list) => {
   const lists = list.querySelector('.lists')
   const defaultCard = list.querySelector('.default-card')
 
-  addCard.addEventListener('click', () => {
-    addCard.classList.add('hidden')
-    addInput.classList.remove('hidden')
-  })
+  if (addCard) {
+    addCard.addEventListener('click', () => {
+      addCard.classList.add('hidden')
+      addInput.classList.remove('hidden')
+    })
+  }
 
   if (addInput) {
     addInput.addEventListener('keydown', function (event) {
-      console.log(event)
       if (event.key === 'Enter') {
         const newCard = defaultCard.cloneNode(true)
         const cardPTag = newCard.querySelector('p')
@@ -115,4 +117,50 @@ listHead.forEach((list) => {
       }
     })
   }
+})
+
+function reinit(parent) {
+  parent.forEach((list) => {
+    const addCard = list.querySelector('button.add')
+    const addInput = list.querySelector('.add-input')
+    const lists = list.querySelector('.lists')
+    const defaultCard = list.querySelector('.default-card')
+
+    if (addCard) {
+      addCard.addEventListener('click', () => {
+        addCard.classList.add('hidden')
+        addInput.classList.remove('hidden')
+      })
+    }
+
+    if (addInput) {
+      addInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          const newCard = defaultCard.cloneNode(true)
+          const cardPTag = newCard.querySelector('p')
+
+          newCard.classList.remove('hidden')
+          cardPTag.innerHTML = addInput.value
+          lists.appendChild(newCard)
+
+          addInput.value = ''
+          addCard.classList.remove('hidden')
+          addInput.classList.add('hidden')
+        } else if (event.key === 'Escape') {
+          addInput.value = ''
+          addCard.classList.remove('hidden')
+          addInput.classList.add('hidden')
+        }
+      })
+    }
+  })
+}
+
+newBoardBtn.addEventListener('click', function () {
+  const defaultList = document.querySelector('.default-list')
+  const newList = defaultList.cloneNode(true)
+
+  newList.classList.remove('hidden')
+  board.prepend(newList)
+  reinit(document.querySelectorAll('.list--head'))
 })

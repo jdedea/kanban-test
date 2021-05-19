@@ -14,9 +14,9 @@
   <body>
     <h1 class="ml-3 text-2xl font-bold mt-2 fixed">Board Title</h1>
     <section class="flex">
-      <div class="flex flex-shrink-0 mt-11">
+      <div class="flex flex-shrink-0 mt-11 board">
         <!-- Start List -->
-        <div class="w-72 m-1 list--head">
+        <div class="w-72 m-1 list--head default-list hidden">
           <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
             <div class="title">
               <div class="flex justify-between">
@@ -47,32 +47,6 @@
                 >
                 <p class="break-words"></p>
               </div>
-              <div
-                draggable="true"
-                class="
-                  bg-white
-                  my-2
-                  rounded
-                  p-1
-                  shadow
-                  hover:bg-gray-50
-                  cursor-move
-                  relative
-                  board-item
-                "
-              >
-                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
-                  >&#128465;</span
-                >
-                <p class="break-words">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
-                  eum esse distinctio ea voluptatem consectetur et illum?
-                </p>
-                <ul>
-                  <li class="list-disc ml-5">Test</li>
-                  <li class="list-disc ml-5">List item 2</li>
-                </ul>
-              </div>
             </div>
 
             <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
@@ -83,141 +57,16 @@
         </div>
         <!-- End List -->
 
-        <!-- Start List -->
+        <!-- Start New Board -->
         <div class="w-72 m-1 list--head">
           <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
-            <div class="title">
-              <div class="flex justify-between">
-                <p class="p-1 font-bold break-words">This is the title</p>
-                <button class="p-1">&#9998;</button>
-              </div>
-              <input type="text" class="font-bold p-1 rounded shadow w-full hidden" />
-            </div>
-            <div class="lists px-1 pt-1 pb-2 w-full">
-              <div
-                draggable="true"
-                class="
-                  bg-white
-                  my-2
-                  rounded
-                  p-1
-                  shadow
-                  hover:bg-gray-50
-                  cursor-move
-                  relative
-                  board-item
-                  hidden
-                  default-card
-                "
-              >
-                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
-                  >&#128465;</span
-                >
-                <p class="break-words"></p>
-              </div>
-              <div
-                draggable="true"
-                class="
-                  bg-white
-                  my-2
-                  rounded
-                  p-1
-                  shadow
-                  hover:bg-gray-50
-                  cursor-move
-                  relative
-                  board-item
-                "
-              >
-                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
-                  >&#128465;</span
-                >
-                <p class="break-words">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
-                  eum esse distinctio ea voluptatem consectetur et illum?
-                </p>
-                <ul>
-                  <li class="list-disc ml-5">Test</li>
-                  <li class="list-disc ml-5">List item 2</li>
-                </ul>
-              </div>
-            </div>
-
-            <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
-              + Add another card
+            <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded new-board">
+              + Create a new board
             </button>
             <textarea class="p-1 rounded shadow add-input hidden" cols="30" rows="3"></textarea>
           </div>
         </div>
-        <!-- End List -->
-
-        <!-- Start List -->
-        <div class="w-72 m-1 list--head">
-          <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
-            <div class="title">
-              <div class="flex justify-between">
-                <p class="p-1 font-bold break-words">This is the title</p>
-                <button class="p-1">&#9998;</button>
-              </div>
-              <input type="text" class="font-bold p-1 rounded shadow w-full hidden" />
-            </div>
-            <div class="lists px-1 pt-1 pb-2 w-full">
-              <div
-                draggable="true"
-                class="
-                  bg-white
-                  my-2
-                  rounded
-                  p-1
-                  shadow
-                  hover:bg-gray-50
-                  cursor-move
-                  relative
-                  board-item
-                  hidden
-                  default-card
-                "
-              >
-                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
-                  >&#128465;</span
-                >
-                <p class="break-words"></p>
-              </div>
-              <div
-                draggable="true"
-                class="
-                  bg-white
-                  my-2
-                  rounded
-                  p-1
-                  shadow
-                  hover:bg-gray-50
-                  cursor-move
-                  relative
-                  board-item
-                "
-              >
-                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
-                  >&#128465;</span
-                >
-                <p class="break-words">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
-                  eum esse distinctio ea voluptatem consectetur et illum?
-                </p>
-                <ul>
-                  <li class="list-disc ml-5">Test</li>
-                  <li class="list-disc ml-5">List item 2</li>
-                </ul>
-              </div>
-            </div>
-
-            <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
-              + Add another card
-            </button>
-            <textarea class="p-1 rounded shadow add-input hidden" cols="30" rows="3"></textarea>
-          </div>
-        </div>
-        <!-- End List -->
+        <!-- End New Board -->
       </div>
     </section>
   </body>
