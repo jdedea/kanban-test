@@ -82,7 +82,7 @@ titleTags.forEach((title) => {
 
 listHead.forEach((list) => {
   const addCard = list.querySelector('button.add')
-  const addInput = list.querySelector('input.add-input')
+  const addInput = list.querySelector('.add-input')
   const lists = list.querySelector('.lists')
   const defaultCard = list.querySelector('.default-card')
 
@@ -96,8 +96,9 @@ listHead.forEach((list) => {
       console.log(event)
       if (event.key === 'Enter') {
         const newCard = defaultCard.cloneNode(true)
-        newCard.classList.remove('hidden')
         const cardPTag = newCard.querySelector('p')
+
+        newCard.classList.remove('hidden')
         cardPTag.innerHTML = addInput.value
         lists.appendChild(newCard)
         addInput.value = ''
