@@ -16,20 +16,37 @@
     <section class="flex">
       <div class="flex flex-shrink-0 mt-11">
         <!-- Start List -->
-        <div class="w-72 m-1 list--head" x-data="{editingTitle: false, addingCard: false}">
+        <div class="w-72 m-1 list--head">
           <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
-            <div class="flex justify-between" x-show="!editingTitle">
-              <p class="p-1 font-bold">This is the title</p>
-              <button class="p-1" @click="editingTitle = true">&#9998;</button>
+            <div class="title">
+              <div class="flex justify-between">
+                <p class="p-1 font-bold">This is the title</p>
+                <button class="p-1">&#9998;</button>
+              </div>
+              <input type="text" class="font-bold p-1 rounded shadow w-full hidden" />
             </div>
-            <input
-              type="text"
-              class="font-bold p-1 rounded shadow"
-              x-show="editingTitle"
-              @keydown.enter="editingTitle = false"
-              @click.away="editingTitle = false"
-            />
             <div class="lists px-1 pt-1 pb-2 w-full">
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                  hidden
+                  default-card
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p></p>
+              </div>
               <div
                 draggable="true"
                 class="
@@ -58,89 +75,10 @@
               </div>
             </div>
 
-            <button
-              class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add"
-              @click="addingCard = true"
-              x-show="!addingCard"
-            >
+            <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
               + Add another card
             </button>
-            <input
-              type="text"
-              class="font-bold p-1 rounded shadow"
-              x-show="addingCard"
-              @click.away="addingCard = false"
-              @keydown.enter="addingCard = false"
-            />
-          </div>
-        </div>
-        <!-- End List -->
-
-        <!-- Start List -->
-        <div
-          class="w-72 m-1 list--head"
-          x-data="{
-            editingTitle: false, 
-            addingCard: false, 
-            title: '',
-          }"
-        >
-          <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
-            <div class="flex justify-between" x-show="!editingTitle">
-              <p class="p-1 font-bold" x-text="name">This is the title</p>
-              <button class="p-1" @click="editingTitle = true">&#9998;</button>
-            </div>
-            <input
-              type="text"
-              class="font-bold p-1 rounded shadow"
-              x-show="editingTitle"
-              x-model="name"
-              @keydown.enter="editingTitle = false"
-              @click.away="editingTitle = false"
-            />
-            <div class="lists px-1 pt-1 pb-2 w-full">
-              <div
-                draggable="true"
-                class="
-                  bg-white
-                  my-2
-                  rounded
-                  p-1
-                  shadow
-                  hover:bg-gray-50
-                  cursor-move
-                  relative
-                  board-item
-                "
-              >
-                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
-                  >&#128465;</span
-                >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
-                  eum esse distinctio ea voluptatem consectetur et illum?
-                </p>
-                <ul>
-                  <li class="list-disc ml-5">Test</li>
-                  <li class="list-disc ml-5">List item 2</li>
-                </ul>
-              </div>
-            </div>
-
-            <button
-              class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add"
-              @click="addingCard = true"
-              x-show="!addingCard"
-            >
-              + Add another card
-            </button>
-            <input
-              type="text"
-              class="font-bold p-1 rounded shadow"
-              x-show="addingCard"
-              @click.away="addingCard = false"
-              @keydown.enter="addingCard = false"
-            />
+            <input type="text" class="p-1 rounded shadow add-input hidden" />
           </div>
         </div>
         <!-- End List -->
@@ -208,7 +146,75 @@
             <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
               + Add another card
             </button>
-            <input type="text" class="font-bold p-1 rounded shadow add-input hidden" />
+            <input type="text" class="p-1 rounded shadow add-input hidden" />
+          </div>
+        </div>
+        <!-- End List -->
+
+        <!-- Start List -->
+        <div class="w-72 m-1 list--head">
+          <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
+            <div class="title">
+              <div class="flex justify-between">
+                <p class="p-1 font-bold">This is the title</p>
+                <button class="p-1">&#9998;</button>
+              </div>
+              <input type="text" class="font-bold p-1 rounded shadow w-full hidden" />
+            </div>
+            <div class="lists px-1 pt-1 pb-2 w-full">
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                  hidden
+                  default-card
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p></p>
+              </div>
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis a odit, fugiat
+                  eum esse distinctio ea voluptatem consectetur et illum?
+                </p>
+                <ul>
+                  <li class="list-disc ml-5">Test</li>
+                  <li class="list-disc ml-5">List item 2</li>
+                </ul>
+              </div>
+            </div>
+
+            <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
+              + Add another card
+            </button>
+            <input type="text" class="p-1 rounded shadow add-input hidden" />
           </div>
         </div>
         <!-- End List -->
@@ -216,4 +222,5 @@
     </section>
   </body>
   <script src="scripts/script.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </html>

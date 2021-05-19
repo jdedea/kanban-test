@@ -72,18 +72,13 @@ titleTags.forEach((title) => {
   })
 
   inputTag.addEventListener('keydown', (event) => {
-    if (event.key === 'enter') {
+    if (event.key === 'Enter') {
       titleName.classList.remove('hidden')
       inputTag.classList.add('hidden')
       titleP.innerHTML = inputTag.value
     }
   })
 })
-
-function addCard(text) {
-  const newCard = document.createElement('div')
-  newCard.setAttribute('draggable', 'true')
-}
 
 listHead.forEach((list) => {
   const addCard = list.querySelector('button.add')
@@ -101,12 +96,13 @@ listHead.forEach((list) => {
       console.log(event)
       if (event.key === 'Enter') {
         const newCard = defaultCard.cloneNode(true)
-        console.log(newCard)
         newCard.classList.remove('hidden')
         const cardPTag = newCard.querySelector('p')
         cardPTag.innerHTML = addInput.value
         lists.appendChild(newCard)
         addInput.value = ''
+        addCard.classList.remove('hidden')
+        addInput.classList.add('hidden')
       }
     })
   }
