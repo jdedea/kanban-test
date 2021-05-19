@@ -77,16 +77,24 @@
         <!-- End List -->
 
         <!-- Start List -->
-        <div class="w-72 m-1 list--head" x-data="{editingTitle: false, addingCard: false}">
+        <div
+          class="w-72 m-1 list--head"
+          x-data="{
+            editingTitle: false, 
+            addingCard: false, 
+            title: '',
+          }"
+        >
           <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
             <div class="flex justify-between" x-show="!editingTitle">
-              <p class="p-1 font-bold">This is the title</p>
+              <p class="p-1 font-bold" x-text="name">This is the title</p>
               <button class="p-1" @click="editingTitle = true">&#9998;</button>
             </div>
             <input
               type="text"
               class="font-bold p-1 rounded shadow"
               x-show="editingTitle"
+              x-model="name"
               @keydown.enter="editingTitle = false"
               @click.away="editingTitle = false"
             />
@@ -138,20 +146,37 @@
         <!-- End List -->
 
         <!-- Start List -->
-        <div class="w-72 m-1 list--head" x-data="{editingTitle: false, addingCard: false}">
+        <div class="w-72 m-1 list--head">
           <div class="flex flex-col justify-between bg-gray-200 p-2 rounded ml-1">
-            <div class="flex justify-between" x-show="!editingTitle">
-              <p class="p-1 font-bold">This is the title</p>
-              <button class="p-1" @click="editingTitle = true">&#9998;</button>
+            <div class="title">
+              <div class="flex justify-between">
+                <p class="p-1 font-bold">This is the title</p>
+                <button class="p-1">&#9998;</button>
+              </div>
+              <input type="text" class="font-bold p-1 rounded shadow w-full hidden" />
             </div>
-            <input
-              type="text"
-              class="font-bold p-1 rounded shadow"
-              x-show="editingTitle"
-              @keydown.enter="editingTitle = false"
-              @click.away="editingTitle = false"
-            />
             <div class="lists px-1 pt-1 pb-2 w-full">
+              <div
+                draggable="true"
+                class="
+                  bg-white
+                  my-2
+                  rounded
+                  p-1
+                  shadow
+                  hover:bg-gray-50
+                  cursor-move
+                  relative
+                  board-item
+                  hidden
+                  default-card
+                "
+              >
+                <span class="absolute top-1 right-1 px-1 bg-gray-100 rounded hidden trash"
+                  >&#128465;</span
+                >
+                <p></p>
+              </div>
               <div
                 draggable="true"
                 class="
@@ -180,85 +205,15 @@
               </div>
             </div>
 
-            <button
-              class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add"
-              @click="addingCard = true"
-              x-show="!addingCard"
-            >
+            <button class="p-1 text-gray-500 w-full text-left hover:bg-gray-300 rounded add">
               + Add another card
             </button>
-            <input
-              type="text"
-              class="font-bold p-1 rounded shadow"
-              x-show="addingCard"
-              @click.away="addingCard = false"
-              @keydown.enter="addingCard = false"
-            />
+            <input type="text" class="font-bold p-1 rounded shadow add-input hidden" />
           </div>
         </div>
         <!-- End List -->
       </div>
     </section>
   </body>
-  <script>
-    const boardItem = document.querySelectorAll('.board-item')
-    const lists = document.querySelectorAll('.lists')
-    const listHead = document.querySelectorAll('.list--head')
-
-    // make items draggable
-    boardItem.forEach((item) => {
-      item.addEventListener('dragstart', () => {
-        item.classList.add('dragging')
-      })
-
-      item.addEventListener('dragend', () => {
-        item.classList.remove('dragging')
-      })
-    })
-
-    // items can be placed in list
-    lists.forEach((list) => {
-      list.addEventListener('dragover', (e) => {
-        e.preventDefault()
-        const afterElement = getDragAfterElement(list, e.clientY)
-        const item = document.querySelector('.dragging')
-        if (afterElement == null) {
-          list.appendChild(item)
-        } else {
-          list.insertBefore(item, afterElement)
-        }
-      })
-    })
-
-    function getDragAfterElement(list, y) {
-      const draggableElements = [...list.querySelectorAll('.board-item:not(.dragging)')]
-      return draggableElements.reduce(
-        (closest, child) => {
-          const box = child.getBoundingClientRect()
-          const offset = y - box.top - box.height / 2
-          if (offset < 0 && offset > closest.offset) {
-            return {offset: offset, element: child}
-          } else {
-            return closest
-          }
-        },
-        {offset: Number.NEGATIVE_INFINITY}
-      ).element
-    }
-
-    // Delete an element
-    boardItem.forEach((item) => {
-      item.addEventListener('mouseenter', function () {
-        const trash = this.querySelector('.trash')
-        trash.classList.remove('hidden')
-        trash.addEventListener('click', function () {
-          this.parentNode.remove()
-        })
-      })
-      item.addEventListener('mouseleave', function () {
-        const trash = this.querySelector('.trash')
-        trash.classList.add('hidden')
-      })
-    })
-  </script>
+  <script src="scripts/script.js"></script>
 </html>
