@@ -121,6 +121,7 @@ listHead.forEach((list) => {
 
 function reinit(parent) {
   parent.forEach((list) => {
+    console.log(parent)
     const addCard = list.querySelector('button.add')
     const addInput = list.querySelector('.add-input')
     const lists = list.querySelector('.lists')
@@ -136,6 +137,7 @@ function reinit(parent) {
     if (addInput) {
       addInput.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
+          console.log('ran')
           const newCard = defaultCard.cloneNode(true)
           const cardPTag = newCard.querySelector('p')
 
@@ -159,8 +161,13 @@ function reinit(parent) {
 newBoardBtn.addEventListener('click', function () {
   const defaultList = document.querySelector('.default-list')
   const newList = defaultList.cloneNode(true)
-
+  $(newList).find('.board-item').not(':first').remove()
   newList.classList.remove('hidden')
   board.prepend(newList)
+  const addInput = document.querySelectorAll('.add-input')
+  $('.add-input').unbind()
+  // addInput.forEach((input) => {
+  //   input.removeEventListener('keydown')
+  // })
   reinit(document.querySelectorAll('.list--head'))
 })
